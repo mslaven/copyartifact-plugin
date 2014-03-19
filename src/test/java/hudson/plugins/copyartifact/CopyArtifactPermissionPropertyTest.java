@@ -50,57 +50,6 @@ public class CopyArtifactPermissionPropertyTest {
     public JenkinsRule j = new JenkinsRule();
     
     @Test
-    public void testCopyArtifactPermissionProperty() throws Exception {
-        // single
-        {
-            CopyArtifactPermissionProperty target = new CopyArtifactPermissionProperty("project1");
-            assertEquals(Arrays.asList("project1"), target.getProjectNameList());
-        }
-        
-        // multiple
-        {
-            CopyArtifactPermissionProperty target = new CopyArtifactPermissionProperty("project1,project2,project3");
-            assertEquals(Arrays.asList("project1","project2","project3"), target.getProjectNameList());
-        }
-        
-        // single with blanks
-        {
-            CopyArtifactPermissionProperty target = new CopyArtifactPermissionProperty("  project1  ");
-            assertEquals(Arrays.asList("project1"), target.getProjectNameList());
-        }
-        
-        // multiple with blanks
-        {
-            CopyArtifactPermissionProperty target = new CopyArtifactPermissionProperty("  project1  ,  project2 ,  project3 ");
-            assertEquals(Arrays.asList("project1","project2","project3"), target.getProjectNameList());
-        }
-        
-        // mixed
-        {
-            CopyArtifactPermissionProperty target = new CopyArtifactPermissionProperty(",  project1 ,  project2  , ,,  project3 ,");
-            assertEquals(Arrays.asList("project1","project2","project3"), target.getProjectNameList());
-        }
-        
-        // only blank
-        {
-            CopyArtifactPermissionProperty target = new CopyArtifactPermissionProperty("  ");
-            assertEquals(Collections.emptyList(), target.getProjectNameList());
-        }
-        
-        // empty
-        {
-            CopyArtifactPermissionProperty target = new CopyArtifactPermissionProperty("");
-            assertEquals(Collections.emptyList(), target.getProjectNameList());
-        }
-        
-        // null
-        {
-            CopyArtifactPermissionProperty target = new CopyArtifactPermissionProperty(null);
-            assertEquals(Collections.emptyList(), target.getProjectNameList());
-        }
-    }
-    
-    @Test
     public void testIsNameMatch() throws Exception {
         // no pattern
         assertTrue(CopyArtifactPermissionProperty.isNameMatch("project1", "project1"));
